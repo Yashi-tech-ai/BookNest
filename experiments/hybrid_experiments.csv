@@ -1,0 +1,7 @@
+experiment,content_weight,collaborative_weight,precision_at_10,recall_at_10,hit_rate_at_10,notes
+EXP-01,0.50,0.50,,,,"Baseline"
+EXP-02,0.60,0.40,,,,"Current configuration"
+EXP-03,0.70,0.30,,,,"Content-heavy"
+EXP-04,0.80,0.20,,,,"Strong content"
+EXP-05,0.40,0.60,,,,"Collaborative-heavy"
+EXP-06,0.30,0.70,,,,"Strong collaborative"
