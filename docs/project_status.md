@@ -101,3 +101,21 @@ strongest tested hybrid configuration overall.
 Finalize the evaluation results and determine the configuration to use
 for the final BookNest recommendation system before proceeding to
 application development.
+
+
+---
+
+## Final Model Configuration
+
+The final BookNest hybrid recommendation configuration has been selected
+based on the evaluation experiments.
+
+- Final content weight (alpha): 0.3
+- Final collaborative weight: 0.7
+- Final recommendation count (K): 10
+
+The hybrid recommender uses:
+
+Hybrid Score = 0.3 × Content Score + 0.7 × Collaborative Score
+
+The final configuration is a collaborative-heavy hybrid recommender.
