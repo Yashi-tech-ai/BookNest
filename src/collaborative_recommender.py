@@ -1,11 +1,13 @@
+from pathlib import Path
+
 import pandas as pd
 from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 
+DATA_DIR = Path(__file__).resolve().parents[1] / "Data"
 
-# Load data
-ratings = pd.read_csv("../Data/ratings.csv")
-books_features = pd.read_csv("../Data/books_features.csv")
+ratings = pd.read_csv(DATA_DIR / "ratings.csv")
+books_features = pd.read_csv(DATA_DIR / "books_features.csv")
 
 
 # Convert IDs to categorical values

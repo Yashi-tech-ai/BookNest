@@ -1,10 +1,12 @@
+from pathlib import Path
+
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+DATA_DIR = Path(__file__).resolve().parents[1] / "Data"
 
-# Load book features
-books_features = pd.read_csv("../Data/books_features.csv")
+books_features = pd.read_csv(DATA_DIR / "books_features.csv")
 
 
 # TF-IDF
