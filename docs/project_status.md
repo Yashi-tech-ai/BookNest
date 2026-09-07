@@ -119,3 +119,37 @@ The hybrid recommender uses:
 Hybrid Score = 0.3 × Content Score + 0.7 × Collaborative Score
 
 The final configuration is a collaborative-heavy hybrid recommender.
+
+
+
+
+## Production Code Refactoring
+
+The finalized recommendation logic from `03_recommendation_model.ipynb`
+has been extracted into reusable Python modules under `src/`.
+
+Production modules:
+
+- `src/content_recommender.py`
+- `src/collaborative_recommender.py`
+- `src/hybrid_recommender.py`
+
+The data-loading paths were updated to use project-relative paths so the
+modules work independently of the notebook working directory.
+
+Automated tests were added in:
+
+- `tests/test_recommenders.py`
+
+The test suite verifies:
+
+- Content-based recommender returns 10 recommendations.
+- Collaborative recommender returns 10 recommendations.
+- Hybrid recommender returns 10 recommendations.
+- The seed book is excluded from recommendations.
+- Hybrid scores follow the final formula:
+  `0.3 × content_score + 0.7 × collaborative_score`
+
+Test result:
+
+- **4/4 tests passed**
