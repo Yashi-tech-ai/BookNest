@@ -22,11 +22,48 @@ selected_book = st.selectbox(
 )
 
 if st.button("✨ Recommend Books"):
+
     recommendations = recommend_hybrid(selected_book)
+
+    # Add book information needed for the website
+    recommendations = recommendations.merge(
+        books[
+            [
+                "book_id",
+                "image_url",
+                "average_rating",
+                "original_publication_year"
+            ]
+        ],
+        on="book_id",
+        how="left"
+    )
 
     st.subheader("Recommended Books")
 
     for _, book in recommendations.iterrows():
-        st.write(f"**{book['title']}**")
-        st.write(f"by {book['authors']}")
-        st.write("---")
+
+        col1, col2 = st.columns([1, 3])
+
+        with col1:
+            if pd.notna(book["image_url"]):
+                st.image(
+                    book["image_url"],
+                    width=130
+                )
+
+        with col2:
+            st.markdown(f"### {book['title']}")
+            st.write(f"**{book['authors']}**")
+
+            if pd.notna(book["average_rating"]):
+                st.write(
+                    f"⭐ {book['average_rating']:.2f}"
+                )
+
+            if pd.notna(book["original_publication_year"]):
+                st.write(
+                    f"Published: {int(book['original_publication_year'])}"
+                )
+
+        st.divider()
