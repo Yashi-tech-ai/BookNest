@@ -9,23 +9,33 @@ st.set_page_config(
     page_icon="📚"
 )
 
-st.title("📚 BookNest")
-st.write("Discover your next great read.")
 
+# Load book data
 books = pd.read_csv("Data/books_features.csv")
 
 book_titles = books["title"].tolist()
 
+
+# Title
+st.title("📚 BookNest")
+
+st.write("Discover your next great read.")
+
+
+# Book selection
 selected_book = st.selectbox(
     "Choose a book:",
     book_titles
 )
 
+
+# Recommendation button
 if st.button("✨ Recommend Books"):
 
     recommendations = recommend_hybrid(selected_book)
 
-    # Add book information needed for the website
+
+    # Add information needed by the website
     recommendations = recommendations.merge(
         books[
             [
@@ -39,31 +49,52 @@ if st.button("✨ Recommend Books"):
         how="left"
     )
 
+
     st.subheader("Recommended Books")
 
+
+    # Display recommendations
     for _, book in recommendations.iterrows():
 
         col1, col2 = st.columns([1, 3])
 
+
+        # Book cover
         with col1:
+
             if pd.notna(book["image_url"]):
+
                 st.image(
                     book["image_url"],
                     width=130
                 )
 
+
+        # Book information
         with col2:
-            st.markdown(f"### {book['title']}")
-            st.write(f"**{book['authors']}**")
+
+            st.markdown(
+                f"### {book['title']}"
+            )
+
+            st.write(
+                f"by {book['authors']}"
+            )
+
 
             if pd.notna(book["average_rating"]):
+
                 st.write(
                     f"⭐ {book['average_rating']:.2f}"
                 )
 
+
             if pd.notna(book["original_publication_year"]):
+
                 st.write(
-                    f"Published: {int(book['original_publication_year'])}"
+                    f"Published: "
+                    f"{int(book['original_publication_year'])}"
                 )
+
 
         st.divider()
