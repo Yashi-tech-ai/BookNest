@@ -153,3 +153,13 @@ The test suite verifies:
 Test result:
 
 - **4/4 tests passed**
+
+## Streamlit Web Application
+
+The BookNest recommendation system has been integrated into a Streamlit
+web application.
+
+The application is launched using:
+
+```bash
+python -m streamlit run app.py
